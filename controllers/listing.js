@@ -60,9 +60,10 @@ module.exports.listingInDetail = async (req, res) => {
 module.exports.AddListing = async (req, res, next) => {
     let url = req.file.path;
     let filename = req.file.filename;
-    const { title, description, image, price, location, country, types } = req.body;
+    const { title, description, image, price, location, country, types ,contact} = req.body;
     const data = new listing({
         title,
+        contact,
         description,
         image,
         price,
