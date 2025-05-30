@@ -1,0 +1,228 @@
+<% layout("layouts/boilerplate"); %>
+
+  <body>
+    <style>
+      .mainFilter {
+        display: flex;
+        align-items: center;
+      }
+
+      #filters {
+         margin-left: -30px !important;
+        visibility: visible;
+        display: flex;
+        /* flex-wrap: wrap; */
+        align-items: center;
+      }
+
+      #filters p,
+      i {
+        color: #fe424d;
+        font-weight: bold;
+      }
+
+      .filter {
+        visibility: visible;
+        text-align: center;
+        margin-right: 2rem;
+        margin-top: 1rem;
+        opacity: 0.7;
+      }
+
+      .filter:hover {
+        opacity: 1;
+        cursor: pointer;
+      }
+
+      .filter p {
+        font-size: 0.8rem;
+      }
+
+      .tax-info {
+        display: none;
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+      }
+
+      a:hover {
+        color: black;
+      }
+
+      .tax-toggle {
+        border: 1px solid #333;
+        color: #fe424d;
+        margin-left:auto;
+        border-radius: 1rem;
+        height: 2.5rem;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #toggleButton {
+        visibility: hidden;
+      }
+
+      .listing p {
+        font-size: 14px;
+      }
+     
+
+      @media (max-width: 400px) {
+        .mainFilter {
+          display: flex !important;
+        }
+
+        #filters {
+          display: none;
+          overflow: scroll;
+          width: 85% !important;
+          margin-left:10px !important;
+        }
+
+        #filters::-webkit-scrollbar {
+          display: none;
+        }
+
+        .tax-toggle {
+          margin-left: -70px;
+        }
+
+        .filter {
+          text-align: center;
+        }
+
+        #toggleButton {
+          visibility: visible;
+          margin-right: 10px;
+          margin-bottom: 5px;
+          padding: 10px;
+          border: none;
+          cursor: pointer;
+          border-radius: 5px;
+        }
+
+        #toggleButton i {
+          color: #fe424d;
+        }
+
+        .tax-toggle {
+          border-radius: 5px;
+          background-color: rgb(231, 230, 230);
+          border: none;
+          margin: 12px 0px 0px 0px;
+          color: #fe424d;
+        }
+      }
+    </style>
+
+    <div class="mainFilter">
+      <button id="toggleButton" class="mt-3"><i class="fa-solid fa-right-left"></i></button>
+      <div id="filters" class="col-10 col-sm-6 col-md-3">
+        <div class="filter">
+          <a href="/listing/?type=rooms"><i class="fa-solid fa-bed"></i>
+            <p>Rooms</p>
+          </a>
+        </div>
+        <div class="filter">
+          <a href="/listing/?type=mountains"><i class="fa-solid fa-mountain"></i>
+            <p>Mountains</p>
+          </a>
+        </div>
+        <div class="filter">
+          <a href="/listing/?type=Castless"><i class="fa-brands fa-fort-awesome"></i>
+            <p>Castless</p>
+          </a>
+        </div>
+        <div class="filter">
+          <a href="/listing/?type=pools"><i class="fa-solid fa-person-swimming"></i>
+            <p>Pools</p>
+          </a>
+        </div>
+        <div class="filter">
+          <a href="/listing/?type=camping"><i class="fa-solid fa-route"></i>
+            <p>Camping</p>
+          </a>
+        </div>
+        <div class="filter">
+          <a href="/listing/?type=farming"><i class="fa-solid fa-wheat-awn"></i>
+            <p>Farms</p>
+          </a>
+        </div>
+        <div class="filter">
+          <a href="/listing/?type=arctic"><i class="fa-solid fa-snowflake"></i>
+            <p>Arctic</p>
+          </a>
+        </div>
+      </div>
+      <div class="tax-toggle col-10 col-sm-6 col-md-3">
+        <div class="form-check   form-check-reverse form-switch">
+          <input class="form-check-input" type="checkbox" id="switchCheckReverse">
+          <label class="form-check-label" for="switchCheckReverse">Display total
+            taxes</label>
+        </div>
+      </div>
+
+    </div>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 mt-3 listing">
+      <% for(let list of alllistings){ %>
+        <a href="/listing/<%= list.id%>" class="listing-link">
+          <div class="card  col listing-card">
+            <img class="card-img-top" src="<%= list.image.url %>" alt="Card image cap" style="height:15rem;">
+
+            <div class="card-img-overlay"></div>
+            <div class="card-body" style="padding-top: 0; padding-left: 0;">
+              <p class="card-text">
+                <b>
+                  <%= list.title %>
+                </b> <br>
+                &#8377; <%= list.price.toLocaleString("en-IN") %> / night
+                  <i class="tax-info">&nbsp;+18% GST</i>
+              </p>
+            </div>
+          </div>
+        </a>
+        <% } %>
+    </div>
+
+    <br>
+
+  </body>
+
+  <script>
+    let taxSwitch = document.getElementById("switchCheckReverse");
+    taxSwitch.addEventListener("click", () => {
+      let taxInfo = document.getElementsByClassName("tax-info");
+      for (info of taxInfo) {
+        if (info.style.display != "inline") {
+          info.style.display = "inline";
+        }
+        else {
+          info.style.display = "none";
+        }
+
+      }
+    });
+
+    document.getElementById("toggleButton").addEventListener("click", function () {
+      var filters = document.getElementById("filters");
+      var toggleElements= document.getElementsByClassName("tax-toggle");
+      if (filters.style.display === "none" || filters.style.display === "") {
+        filters.style.display = "flex";
+        filters.style.width="100%";
+        for (var i = 0; i < toggleElements.length; i++) {
+            toggleElements[i].style.display = "none";
+        }
+      } else {
+        filters.style.display = "none";
+        for (var i = 0; i < toggleElements.length; i++) {
+            toggleElements[i].style.display = "flex";
+        }
+      }
+    });
+
+  </script>

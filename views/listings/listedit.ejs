@@ -1,0 +1,118 @@
+<% layout("layouts/boilerplate"); %>
+
+    <body>
+        <div class="row">
+             <h3 class="offset-md-2 col-12 col-sm-6 col-md-8 mb-3 mt-3">Edit your Listing</h3>
+            <div class=" offset-md-2 col-12 col-sm-6 col-md-8 formDesign mb-3">
+                <form action="/listing/<%= data.id %>?_method=PUT" method="POST" novalidate class="needs-validation"
+                    enctype="multipart/form-data">
+                    <!-- Title -->
+                    <div class=" mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" name="title" id="title" class="form-control" value="<%= data.title %>"
+                            required>
+                        <div class="valid-feedback">
+                            Title looks good !
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p>Original Listing Image:</p>
+                        <img src="<%= originalImageUrl %>" alt="" style="width:200px; height: 150px;">
+                    </div>
+                    <!-- Image URL -->
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Upload Image</label>
+                        <input type="file" name="image" id="image" class="form-control">
+                        <div class="invalid-feedback">
+                            Please enter valid url !
+                        </div>
+                    </div>
+                     <!-- Description -->
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea name="description" id="description" class="form-control"
+                            placeholder="Enter description" rows="5" required><%= data.description%></textarea>
+                        <div class="invalid-feedback">
+                            Enter description !
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label class="form-label">Speciality</label>
+                        <div class="row row1">
+                            <div class="form-check col-12 col-sm-6 col-md-2">
+                                <input class="form-check-input" type="checkbox" name="types" value="rooms"
+                                    id="typeRooms">
+                                <label class="form-check-label" for="typeRooms">Rooms</label>
+                            </div>
+                            <div class="form-check col-12 col-sm-6 col-md-2">
+                                <input class="form-check-input" type="checkbox" name="types" value="mountains"
+                                    id="typeMountains">
+                                <label class="form-check-label" for="typeMountains">Mountains</label>
+                            </div>
+                            <div class="form-check col-12 col-sm-6 col-md-2">
+                                <input class="form-check-input" type="checkbox" name="types" value="camping"
+                                    id="typeCamping">
+                                <label class="form-check-label" for="typeCamping">Camping</label>
+                            </div>
+                            <div class="form-check col-12 col-sm-6 col-md-2">
+                                <input class="form-check-input" type="checkbox" name="types" value="farming"
+                                    id="typeFarming">
+                                <label class="form-check-label" for="typeFarming">Farming</label>
+                            </div>
+                            <div class="form-check col-12 col-sm-6 col-md-2">
+                                <input class="form-check-input" type="checkbox" name="types" value="arctict"
+                                    id="typeArctict">
+                                <label class="form-check-label" for="typeArctict">Arctict</label>
+                            </div>
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter Speciality of place!
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Price -->
+                        <div class="mb-3 col-4">
+                            <label for="price" class="form-label">Price</label>
+                            <input type="number" name="price" id="price" class="form-control" value="<%= data.price %>"
+                                required>
+
+                            <div class="invalid-feedback">
+                                Edit valid Price !
+                            </div>
+                        </div>
+
+
+                        <!-- Country -->
+                        <div class="mb-3 col-8">
+                            <label for="country" class="form-label">Country</label>
+                            <input type="text" name="country" id="country" class="form-control"
+                                value="<%= data.country %>" required>
+                            <div class="invalid-feedback">
+                                Enter country !
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" name="location" id="location" class="form-control"
+                            value="<%= data.location %>" required>
+                        <div class="invalid-feedback">
+                            Enter location !
+                        </div>
+                    </div>
+
+                    <!-- Submit button (full width) -->
+                    <div class="col-12">
+                        <button type="submit" class="btn  add-button">Edit</button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </body>
