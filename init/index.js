@@ -21,7 +21,8 @@ const initDB=async()=>{
      initdata.data = initdata.data.map((obj, i) => ({
     ...obj,
     Owner: "6832b0ab6a9d5cefed345544",
-    types: [allTypes[i % allTypes.length]] 
+    types: [allTypes[i % allTypes.length]] ,
+    contact:1234567890,
     }));
        await listing.insertMany(initdata.data);
     console.log("data was initalized");

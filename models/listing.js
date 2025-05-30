@@ -1,6 +1,7 @@
 const mongoose=require("mongoose");
 const Schema=mongoose.Schema;
 const review=require("./review.js");
+const { number } = require("joi");
  
 const listingSchema=new Schema({
      title:{
@@ -36,6 +37,10 @@ const listingSchema=new Schema({
      types: {
       type:[String],
       required: true,
+    },
+    contact:{
+      type:Number,
+      required:true,
     },
 });
 

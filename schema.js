@@ -11,6 +11,7 @@ module.exports.listingSchema = Joi.object({
     filename: Joi.string()
   }).optional(),
   types:Joi.array().items(Joi.string()).required(),
+  contact: Joi.number().required(),
 });
 
 module.exports.reviewSchema= Joi.object({

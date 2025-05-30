@@ -13,12 +13,13 @@
                <p class="card-text">
                   <i id="username">
                      <%= data.Owner.username %>
-                  </i> <br>
-                  <%= data.description %> <br>
+                    
+                  </i><b> &nbsp;(<%= data.contact %>)</b> <br>
+                  "<%= data.description %> "<br>
                      &#8377 Price :<%= data.price.toLocaleString("en-IN") %> <br>
-                        <%= data.location %> <br>
-                           <%= data.country %> <br>
+                        <%= data.location %> ,<%= data.country %> <br>
                               <%= data.types.join(", ") %><br>
+                           
 
 
               </p>
